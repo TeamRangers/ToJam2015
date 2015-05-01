@@ -7,7 +7,11 @@ public class ProjectileMover : MonoBehaviour {
 	void Start () {
 		GetComponent<Rigidbody2D>().AddForce(transform.forward * speed);
 	}
-	
+
+	void OnCollisionEnter2D(Collision2D coll) {
+		Destroy(gameObject);
+	}
+
 	// Update is called once per frame
 	void Update () {
 	
