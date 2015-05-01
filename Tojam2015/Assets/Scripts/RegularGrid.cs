@@ -30,8 +30,25 @@ public class RegularGrid {
         {
             throw new UnityException("location out of bounds");
         }
+        
+        // Bilinear interpolation
+        Vector2 q11, q12, q21, q22;
+        q11 = new Vector2( x      * _basis.x,  y      * _basis.y);
+        q21 = new Vector2((x + 1) * _basis.x,  y      * _basis.y);
+        q12 = new Vector2( x      * _basis.x, (y + 1) * _basis.y);
+        q22 = new Vector2((x + 1) * _basis.x, (y + 1) * _basis.y);
 
-        return _data[x + y * _xDivs];
+        Vector2 fq11, fq12, fq21, fq22;
+        fq11 = _data[ x      +  y      * _xDivs];
+        fq21 = x < _xDivs + 1 ? _data[(x + 1) +  y      * _xDivs] : Vector2.zero;
+        fq12 = y < _yDivs + 1 ? _data[ x      + (y + 1) * _xDivs] : Vector2.zero;
+        fq22 = x < _xDivs + 1 || y < _yDivs + 1 ? _data[(x + 1) + (y + 1) * _xDivs] : Vector2.zero;
+
+        Vector2 fxy1 = (q22.x - point.x) / (q22.x - q11.x) * fq11 + (point.x - q11.x) / (q22.x - q11.x) * fq21;
+        Vector2 fxy2 = (q22.x - point.x) / (q22.x - q11.x) * fq12 + (point.x - q11.x) / (q22.x - q11.x) * fq22;
+        Vector2 fxy  = (q22.y - point.y) / (q22.y - q11.y) * fxy1 + (point.y - q11.y) / (q22.y - q11.y) * fxy2;
+
+        return fxy;
     }
 
     public void SetValue(Vector2 point, Vector2 value)
