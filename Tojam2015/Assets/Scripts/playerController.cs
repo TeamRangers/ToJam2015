@@ -20,12 +20,14 @@ public class playerController : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		float moveHorizontal = Input.GetAxis ("Horizontal");
+		float moveVertical = Input.GetAxis ("Vertical");
 		
 		Vector2 movement = new Vector2 (moveHorizontal, 0.0f);
 		
 		//rb.AddForce (movement * speed);
 		Vector2 v = rb.velocity;
 		v.x =  moveHorizontal * speed;
+		v.y = moveVertical * speed;
 		rb.velocity = v;
 	}
 	
