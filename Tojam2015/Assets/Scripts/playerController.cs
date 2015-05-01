@@ -16,13 +16,10 @@ public class playerController : MonoBehaviour {
 			
 
 		if (Input.GetButtonDown("Fire1")){
-			RaycastHit2D hit = Physics2D.Raycast(transform.position,  Camera.main.ScreenToWorldPoint (Input.mousePosition));
 			Vector3 target = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			if (hit.point != null){
-				target.z = 0;
-				Quaternion projectileRotation = Quaternion.LookRotation(target - transform.position);
-				Instantiate(projectileObject, transform.position * 0, projectileRotation);
-			}
+			target.z = 0;
+			Quaternion projectileRotation = Quaternion.LookRotation(target - transform.position);
+			Instantiate(projectileObject, Vector3.MoveTowards(transform.position, target, 1), projectileRotation);
 		}
 	}
 }
