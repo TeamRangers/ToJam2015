@@ -373,7 +373,7 @@ GameObject:
   - 23: {fileID: 926774022}
   - 114: {fileID: 926774021}
   - 50: {fileID: 926774020}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: P1Reticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
