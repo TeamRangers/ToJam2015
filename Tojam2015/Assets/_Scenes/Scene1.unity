@@ -319,6 +319,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1374740171}
   m_RootOrder: 3
+--- !u!1001 &815713455
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 402498, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -6.67000008
+      objectReference: {fileID: 0}
+    - target: {fileID: 402498, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.71000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 402498, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 402498, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 402498, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 402498, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 402498, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 402498, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1279599294
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,11 +460,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1279599294}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: a734ca77cb47a344595e870c26d5ed39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
   jumpSpeed: 10
+=======
+  m_Script: {fileID: 11500000, guid: 1879c1f8d02b21d4eacba2be2f8f9f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileObject: {fileID: 193266, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+>>>>>>> 091184a47b245d5d1d6a02f08bdcc48376c9640f
 --- !u!1 &1374740170
 GameObject:
   m_ObjectHideFlags: 0
