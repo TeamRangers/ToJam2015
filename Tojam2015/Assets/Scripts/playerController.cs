@@ -79,7 +79,7 @@ public class playerController : MonoBehaviour {
 				reticle.transform.position = enemy.transform.position;
 				if (Time.time > nextAttackTime){
 				FireProjectile();
-					nextAttackTime = Time.time + aiAttackSpeed;
+				nextAttackTime = Time.time + aiAttackSpeed;
 				}
 				return;
 			}
