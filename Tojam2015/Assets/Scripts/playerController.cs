@@ -8,6 +8,10 @@ public class playerController : MonoBehaviour {
 	public float speed;
 	public float jumpSpeed;
 
+	public string Horizontal;
+	public string Vertical;
+	public string Fire;
+
 	public GameObject reticle;
 
 	private Rigidbody2D rb;
@@ -19,8 +23,8 @@ public class playerController : MonoBehaviour {
 	
 	void FixedUpdate ()
 	{
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
+		float moveHorizontal = Input.GetAxis (Horizontal);
+		float moveVertical = Input.GetAxis (Vertical);
 		
 		Vector2 movement = new Vector2 (moveHorizontal, 0.0f);
 		
@@ -38,7 +42,7 @@ public class playerController : MonoBehaviour {
 			rb.AddForce(transform.up * jumpSpeed, ForceMode2D.Impulse);
 		}
 
-		if (Input.GetButtonDown("Fire1")){
+		if (Input.GetButtonDown(Fire)){
 			//Vector3 target = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			Vector3 target = reticle.transform.position;
 			target.z = 0;

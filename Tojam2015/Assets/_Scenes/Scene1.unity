@@ -406,6 +406,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd385ae32722da84bab4a169f08651d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MouseX: P1_Mouse X
+  MouseY: P1_Mouse Y
   speed: 17
 --- !u!23 &926774022
 MeshRenderer:
@@ -555,6 +557,9 @@ MonoBehaviour:
   projectileObject: {fileID: 193266, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
   speed: 10
   jumpSpeed: 10
+  Horizontal: P1_Horizontal
+  Vertical: P1_Vertical
+  Fire: P1_Fire1
   reticle: {fileID: 926774019}
 --- !u!1 &1374740170
 GameObject:
