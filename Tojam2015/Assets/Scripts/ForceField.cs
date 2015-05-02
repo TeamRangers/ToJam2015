@@ -78,7 +78,7 @@ public class ForceField : MonoBehaviour {
                 if (showVectors && _forces != null)
                 {
                     Gizmos.color = Color.yellow;
-                    Gizmos.DrawLine(position, position + (Vector3) _forces.GetValue((Vector2) (position - transform.position)) / forceConstant);
+                    Gizmos.DrawLine(position, position + (Vector3)_forces.GetValue((Vector2)(position - transform.position)) / _maxForceMagnitude);
                 }
             }
         }

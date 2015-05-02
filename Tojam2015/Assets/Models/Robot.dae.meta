@@ -1,24 +1,30 @@
 fileFormatVersion: 2
-guid: 1962639a1f151db4e963545a6891fd18
-timeCreated: 1430535821
+guid: 398ddde4274657a43ac3f45a3c17cca6
+timeCreated: 1430602209
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: Body
-    100002: Head
-    100004: LeftArm
-    100006: LeftLeg
-    100008: RightArm
-    100010: RightLeg
-    100012: //RootNode
+    100002: Camera
+    100004: Head
+    100006: Lamp
+    100008: LeftArm
+    100010: LeftLeg
+    100012: RightArm
+    100014: RightLeg
+    100016: //RootNode
+    100018: Robot
     400000: Body
-    400002: Head
-    400004: LeftArm
-    400006: LeftLeg
-    400008: RightArm
-    400010: RightLeg
-    400012: //RootNode
+    400002: Camera
+    400004: Head
+    400006: Lamp
+    400008: LeftArm
+    400010: LeftLeg
+    400012: RightArm
+    400014: RightLeg
+    400016: //RootNode
+    400018: Robot
     2300000: Body
     2300002: Head
     2300004: LeftArm
@@ -31,13 +37,12 @@ ModelImporter:
     3300006: LeftLeg
     3300008: RightArm
     3300010: RightLeg
-    4300000: LeftLeg
-    4300002: RightLeg
-    4300004: RightArm
-    4300006: LeftArm
-    4300008: Head
-    4300010: Body
-    7400000: Default Take
+    4300000: Body
+    4300002: Head
+    4300004: LeftArm
+    4300006: RightArm
+    4300008: RightLeg
+    4300010: LeftLeg
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -66,7 +71,7 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
-    keepQuads: 1
+    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001

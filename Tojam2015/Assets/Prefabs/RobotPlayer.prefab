@@ -362,42 +362,42 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 132036}
-  m_Mesh: {fileID: 4300000, guid: 1962639a1f151db4e963545a6891fd18, type: 3}
+  m_Mesh: {fileID: 4300010, guid: 398ddde4274657a43ac3f45a3c17cca6, type: 3}
 --- !u!33 &3324980
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180210}
-  m_Mesh: {fileID: 4300004, guid: 1962639a1f151db4e963545a6891fd18, type: 3}
+  m_Mesh: {fileID: 4300006, guid: 398ddde4274657a43ac3f45a3c17cca6, type: 3}
 --- !u!33 &3352968
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193632}
-  m_Mesh: {fileID: 4300002, guid: 1962639a1f151db4e963545a6891fd18, type: 3}
+  m_Mesh: {fileID: 4300008, guid: 398ddde4274657a43ac3f45a3c17cca6, type: 3}
 --- !u!33 &3371864
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130710}
-  m_Mesh: {fileID: 4300006, guid: 1962639a1f151db4e963545a6891fd18, type: 3}
+  m_Mesh: {fileID: 4300004, guid: 398ddde4274657a43ac3f45a3c17cca6, type: 3}
 --- !u!33 &3372408
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137476}
-  m_Mesh: {fileID: 4300008, guid: 1962639a1f151db4e963545a6891fd18, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 398ddde4274657a43ac3f45a3c17cca6, type: 3}
 --- !u!33 &3399226
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120766}
-  m_Mesh: {fileID: 4300010, guid: 1962639a1f151db4e963545a6891fd18, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 398ddde4274657a43ac3f45a3c17cca6, type: 3}
 --- !u!50 &5011440
 Rigidbody2D:
   m_ObjectHideFlags: 1
@@ -434,7 +434,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107740}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 1962639a1f151db4e963545a6891fd18, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 398ddde4274657a43ac3f45a3c17cca6, type: 3}
   m_Controller: {fileID: 9100000, guid: c0deab3a4d3b8d3488b1ecf10082efd4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -454,9 +454,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea7af08fe549bf4fa437de499f527a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceField: {fileID: 0}
   jumpForce: 10
-  rotationSpeed: 1.5
+  surfaceWalkSpeed: 0
+  horizontalAxis: 
+  jumpButton: 
   playerState: 0
 --- !u!247 &24796208
 ConstantForce2D:
