@@ -13,6 +13,8 @@ public class playerController : MonoBehaviour {
 	public string Fire;
 	public string Jump;
 
+	public bool activeAI;
+
 	public GameObject reticle;
 
 	private Rigidbody2D rb;
@@ -24,6 +26,7 @@ public class playerController : MonoBehaviour {
 	
 	void FixedUpdate ()
 	{
+		if (activeAI){return aiTick();}
 		float moveHorizontal = Input.GetAxis (Horizontal);
 		float moveVertical = Input.GetAxis (Vertical);
 		
@@ -38,6 +41,7 @@ public class playerController : MonoBehaviour {
 	
 	void Update ()
 	{
+		if (activeAI) {return;}
 		bool down = Input.GetButtonDown(Jump);
 		if (down) {
 			rb.AddForce(transform.up * jumpSpeed, ForceMode2D.Impulse);
@@ -53,5 +57,9 @@ public class playerController : MonoBehaviour {
 		target.z = 0;
 		Quaternion projectileRotation = Quaternion.LookRotation(target - transform.position);
 		Instantiate(projectileObject, Vector3.MoveTowards(transform.position, target, 1), projectileRotation);
+	}
+
+	void aiTick(){
+
 	}
 }
