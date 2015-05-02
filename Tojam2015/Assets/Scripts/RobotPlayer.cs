@@ -54,10 +54,10 @@ public class RobotPlayer : MonoBehaviour {
         _forceField = GameObject.FindGameObjectWithTag("ForceField").GetComponent<ForceField>();
 
 		if (activeAI){ //Construct a list of enemies (everyone tagged Player except oneself)
-			GameObject[] enemiesArray = GameObject.FindGameObjectsWithTag("Player");
 			enemies = new List<GameObject>();
-			for (int i =0; i < enemiesArray.Length; i++){
-				if (enemiesArray[i] != gameObject) {enemies.Add(enemiesArray[i]);}
+			for (int i = 1; i < 5; i++){
+				GameObject enemy = GameObject.FindGameObjectWithTag("Player" + i.ToString());
+				if (enemy != null && enemy != gameObject) {enemies.Add(enemy);}
 			}
 		}
     }
@@ -124,7 +124,7 @@ public class RobotPlayer : MonoBehaviour {
             _state = playerState = PlayerState.Floating;            
         }
 
-
+		if (activeAI){AiTick(); return;}
 		//Handle firing here
 		if (Input.GetButtonDown (fire)){
 			FireProjectile();
@@ -157,6 +157,17 @@ public class RobotPlayer : MonoBehaviour {
 			_rb2D.AddForce((transform.position - target).normalized * recoilStrength, ForceMode2D.Impulse);
 			
 			nextAttackTime = Time.time + attackDelay; //Set the next attack time to be current time + delay
+		}
+	}
+
+	void AiTick(){
+		foreach (GameObject enemy in enemies) {
+			if (Random.Range(0, 100) > 100/enemies.Count){continue;}
+			if (enemy.activeSelf){
+				reticle.transform.position = enemy.transform.position;
+				FireProjectile();
+				return;
+			}
 		}
 	}
 }
