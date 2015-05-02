@@ -356,7 +356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oppositeWall: {fileID: 799265582}
-  teleportX: 1
+  teleportX: 0
 --- !u!1 &596893759
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oppositeWall: {fileID: 418589394}
-  teleportX: 1
+  teleportX: 0
 --- !u!1001 &815713455
 Prefab:
   m_ObjectHideFlags: 0
@@ -1564,4 +1564,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oppositeWall: {fileID: 1503545157}
-  teleportX: 0
+  teleportX: 1

@@ -5,7 +5,7 @@ public class WallTeleporter : MonoBehaviour {
 
 	public GameObject oppositeWall;
 	public bool teleportX; //Determine whether we teleport horizontally or vertically.
-	public static float offset = 50;
+	public static float offset = 0.5f;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +17,7 @@ public class WallTeleporter : MonoBehaviour {
 	
 	}
 
-	void OnTriggerEnter(Collider other){
+	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.tag == "Player"){
 		}
 		Vector2 otherPosition = other.transform.position;
