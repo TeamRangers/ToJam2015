@@ -74,6 +74,7 @@ public class playerController : MonoBehaviour {
 
 	void aiTick(){
 		foreach (GameObject enemy in enemies) {
+			if (Random.Range(0, 100) > 100/enemies.Count){continue;}
 			if (enemy.activeSelf){
 				reticle.transform.position = enemy.transform.position;
 				if (Time.time > nextAttackTime){
