@@ -81,7 +81,7 @@ public class playerController : MonoBehaviour {
 			//Add some recoil of a fixed magnitude
 			rb.AddForce((transform.position - target).normalized, ForceMode2D.Impulse);
 
-			nextAttackTime = Time.time + aiAttackSpeed; //Set the next attack time to be current time + delay
+			nextAttackTime = Time.time + AttackSpeed; //Set the next attack time to be current time + delay
 		}
 	}
 
