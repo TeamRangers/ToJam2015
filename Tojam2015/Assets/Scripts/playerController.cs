@@ -70,6 +70,7 @@ public class playerController : MonoBehaviour {
 		target.z = 0;
 		Quaternion projectileRotation = Quaternion.LookRotation(target - transform.position);
 		Instantiate(projectileObject, Vector3.MoveTowards(transform.position, target, 1), projectileRotation);
+		rb.AddForce((transform.position - target).normalized, ForceMode2D.Impulse);
 	}
 
 	void aiTick(){
