@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DebugPlayer : MonoBehaviour {
+public class RobotPlayer : MonoBehaviour {
 
     public ForceField forceField;
     public float jumpForce;
@@ -39,11 +39,13 @@ public class DebugPlayer : MonoBehaviour {
 
         if (_state == PlayerState.Floating)
         {
+            // Sample gravity from field
             _cf2D.force = forceField.GetForce(transform.position);            
             _animator.SetBool("Floating", true);            
         }
         else if (_state == PlayerState.AboutToLand)
         {
+            // Turn off physics and fix to surface
             _rb2D.isKinematic = true;
             _animator.SetBool("Floating", false);
             _cf2D.force = Vector2.zero;
@@ -61,6 +63,7 @@ public class DebugPlayer : MonoBehaviour {
 
             if (Mathf.Abs(hInput) > 0)
             {                
+                // Move (rotate) around planet surface
                 float theta = Mathf.Atan2(surfacePosition.y, surfacePosition.x);
                 theta -= hInput * rotationSpeed * Time.deltaTime;
 
@@ -77,7 +80,8 @@ public class DebugPlayer : MonoBehaviour {
 
             if (Input.GetButton("Jump"))
             {                
-                transform.position = _surface.transform.position + (Vector3) surfacePosition * 1.1f;
+                // Give a nudge off the surface before turning physics back on
+                transform.position = _surface.transform.position + (Vector3) surfacePosition * 1.01f;
                 _animator.SetBool("Walking", false);
                 _rb2D.isKinematic = false;
                 _rb2D.AddForce(surfacePosition.normalized * jumpForce, ForceMode2D.Impulse);                
@@ -86,8 +90,8 @@ public class DebugPlayer : MonoBehaviour {
         }
         else if (_state == PlayerState.LeavingSurface)
         {
-            _state = playerState = PlayerState.Floating;
-            Debug.Log("Current state is LeavingSurface");
+            // Placeholder
+            _state = playerState = PlayerState.Floating;            
         }
 
 	}
