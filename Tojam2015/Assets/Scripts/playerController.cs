@@ -11,6 +11,7 @@ public class playerController : MonoBehaviour {
 	public string Horizontal;
 	public string Vertical;
 	public string Fire;
+	public string Jump;
 
 	public GameObject reticle;
 
@@ -37,7 +38,7 @@ public class playerController : MonoBehaviour {
 	
 	void Update ()
 	{
-		bool down = Input.GetButtonDown("Jump");
+		bool down = Input.GetButtonDown(Jump);
 		if (down) {
 			rb.AddForce(transform.up * jumpSpeed, ForceMode2D.Impulse);
 		}
