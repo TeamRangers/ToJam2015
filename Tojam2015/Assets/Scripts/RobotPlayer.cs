@@ -12,6 +12,7 @@ public class RobotPlayer : MonoBehaviour {
 	public GameObject reticle;
 	public GameObject projectileObject;
 
+	public float recoilStrength;
 	public float attackDelay;
 	private float nextAttackTime;
 
@@ -135,12 +136,12 @@ public class RobotPlayer : MonoBehaviour {
 			
 			//Determine the rotation for the projectile we are about to spawn by using the vector from us to the reticle
 			Quaternion projectileRotation = Quaternion.LookRotation(target - transform.position);
-			Debug.Log("Spawning prjectile");
+
 			//Create a new projectile, 1 unit away from us, facing the direction of the reticle
 			Instantiate(projectileObject, Vector3.MoveTowards(transform.position, target, 2), projectileRotation);
 			
 			//Add some recoil of a fixed magnitude
-			_rb2D.AddForce((transform.position - target).normalized, ForceMode2D.Impulse);
+			_rb2D.AddForce((transform.position - target).normalized * recoilStrength, ForceMode2D.Impulse);
 			
 			nextAttackTime = Time.time + attackDelay; //Set the next attack time to be current time + delay
 		}
