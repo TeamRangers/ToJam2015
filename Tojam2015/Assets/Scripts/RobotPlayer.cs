@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RobotPlayer : MonoBehaviour {
     
@@ -16,7 +17,9 @@ public class RobotPlayer : MonoBehaviour {
 	public float attackDelay;
 	private float nextAttackTime;
 
+	public bool activeAI;
 
+	private IList<GameObject> enemies;
     public PlayerState playerState;
 
     Animator _animator;
@@ -49,6 +52,14 @@ public class RobotPlayer : MonoBehaviour {
     void Start()
     {
         _forceField = GameObject.FindGameObjectWithTag("ForceField").GetComponent<ForceField>();
+
+		if (activeAI){ //Construct a list of enemies (everyone tagged Player except oneself)
+			GameObject[] enemiesArray = GameObject.FindGameObjectsWithTag("Player");
+			enemies = new List<GameObject>();
+			for (int i =0; i < enemiesArray.Length; i++){
+				if (enemiesArray[i] != gameObject) {enemies.Add(enemiesArray[i]);}
+			}
+		}
     }
 	
 	// Update is called once per frame
@@ -95,13 +106,15 @@ public class RobotPlayer : MonoBehaviour {
 
             transform.rotation = Quaternion.FromToRotation(Vector3.up, surfacePosition.normalized);
 
-            if (Input.GetButton(jumpButton))
-            {                
+            if (Input.GetButton(jumpButton) || activeAI)
+            {   
+				int aiRoll;
+				if (activeAI) {aiRoll = Random.Range(1, 2);} else {aiRoll = 1;}
                 // Give a nudge off the surface before turning physics back on
                 transform.position = _surface.transform.position + (Vector3) surfacePosition * 1.01f;
                 _animator.SetBool("Walking", false);
                 _rb2D.isKinematic = false;
-                _rb2D.AddForce(surfacePosition.normalized * jumpForce, ForceMode2D.Impulse);                
+                _rb2D.AddForce(surfacePosition.normalized * jumpForce * aiRoll, ForceMode2D.Impulse);                
                 _state = playerState = PlayerState.LeavingSurface;           
             }
         }
