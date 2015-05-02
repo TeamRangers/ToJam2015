@@ -539,7 +539,7 @@ Transform:
   m_GameObject: {fileID: 1279599294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: .319999993, y: 1.67999995, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -555,8 +555,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileObject: {fileID: 193266, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
-  speed: 10
-  jumpSpeed: 10
+  speed: 5
+  jumpSpeed: 5
   Horizontal: P1_Horizontal
   Vertical: P1_Vertical
   Fire: P1_Fire1
