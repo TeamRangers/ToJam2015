@@ -18,7 +18,7 @@ public class WallTeleporter : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.gameObject.tag == "Player"){ //Check if a player bumped into us
+		if (other.gameObject.tag.Contains("Player")){ //Check if a player bumped into us
 		
 		Vector2 otherPosition = other.transform.position; //Get player's current position
 		if (teleportX){ //Check if we are supposed to teleport on X axis
