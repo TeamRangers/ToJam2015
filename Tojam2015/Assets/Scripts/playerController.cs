@@ -15,6 +15,8 @@ public class playerController : MonoBehaviour {
 	public string Jump;
 
 	public bool activeAI;
+	public float aiAttackSpeed;
+	private float nextAttackTime;
 
 	public GameObject reticle;
 
@@ -71,6 +73,15 @@ public class playerController : MonoBehaviour {
 	}
 
 	void aiTick(){
-
+		foreach (GameObject enemy in enemies) {
+			if (enemy.activeSelf){
+				reticle.transform.position = enemy.transform.position;
+				if (Time.time > nextAttackTime){
+				FireProjectile();
+					nextAttackTime = Time.time + aiAttackSpeed;
+				}
+				return;
+			}
+		}
 	}
 }
