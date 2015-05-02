@@ -44,11 +44,14 @@ public class playerController : MonoBehaviour {
 		}
 
 		if (Input.GetButtonDown(Fire)){
-			//Vector3 target = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			Vector3 target = reticle.transform.position;
-			target.z = 0;
-			Quaternion projectileRotation = Quaternion.LookRotation(target - transform.position);
-			Instantiate(projectileObject, Vector3.MoveTowards(transform.position, target, 1), projectileRotation);
+			FireProjectile();
+
 	}
 }
+	void FireProjectile(){
+		Vector3 target = reticle.transform.position;
+		target.z = 0;
+		Quaternion projectileRotation = Quaternion.LookRotation(target - transform.position);
+		Instantiate(projectileObject, Vector3.MoveTowards(transform.position, target, 1), projectileRotation);
+	}
 }
