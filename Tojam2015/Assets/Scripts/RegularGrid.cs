@@ -42,7 +42,7 @@ public class RegularGrid {
         fq11 = _data[ x      +  y      * _xDivs];
         fq21 = x < _xDivs + 1 ? _data[(x + 1) +  y      * _xDivs] : Vector2.zero;
         fq12 = y < _yDivs + 1 ? _data[ x      + (y + 1) * _xDivs] : Vector2.zero;
-        fq22 = x < _xDivs + 1 || y < _yDivs + 1 ? _data[(x + 1) + (y + 1) * _xDivs] : Vector2.zero;
+        fq22 = x < _xDivs + 1 && y < _yDivs + 1 ? _data[(x + 1) + (y + 1) * _xDivs] : Vector2.zero;
 
         Vector2 fxy1 = (q22.x - point.x) / (q22.x - q11.x) * fq11 + (point.x - q11.x) / (q22.x - q11.x) * fq21;
         Vector2 fxy2 = (q22.x - point.x) / (q22.x - q11.x) * fq12 + (point.x - q11.x) / (q22.x - q11.x) * fq22;
