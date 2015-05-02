@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class playerController : MonoBehaviour {
 	public GameObject projectileObject;
@@ -18,15 +19,25 @@ public class playerController : MonoBehaviour {
 	public GameObject reticle;
 
 	private Rigidbody2D rb;
+
+	private IList<GameObject> enemies;
 	
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody2D>();
-	}
-	
+
+		if (activeAI){
+			GameObject[] enemiesArray = GameObject.FindGameObjectsWithTag("Player");
+			enemies = new List<GameObject>();
+			for (int i =0; i < enemiesArray.Length; i++){
+				if (enemiesArray[i] != gameObject) {enemies.Add(enemiesArray[i]);}
+			}
+		}
+	} 
+
 	void FixedUpdate ()
 	{
-		if (activeAI){return aiTick();}
+		if (activeAI){aiTick(); return;}
 		float moveHorizontal = Input.GetAxis (Horizontal);
 		float moveVertical = Input.GetAxis (Vertical);
 		
