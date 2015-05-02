@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerHealth : MonoBehaviour {
 
 	public int startHealth = 100;
 	public int currentHealth;
+	public Slider healthSlider;
 
 	bool isDead;
 
 	void Awake () {
 		currentHealth = startHealth;
+		healthSlider.value = startHealth;
 	}
 
 	// Use this for initialization
@@ -25,7 +28,7 @@ public class PlayerHealth : MonoBehaviour {
 	public void TakeDamage (int amount)
 	{
 		currentHealth -= amount;
-
+		healthSlider.value = currentHealth;
 		if (currentHealth <= 0 && !isDead) {
 			Death();
 		}
@@ -36,4 +39,5 @@ public class PlayerHealth : MonoBehaviour {
 
 		gameObject.SetActive(false);
 	}
+
 }
