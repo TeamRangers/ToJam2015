@@ -19,7 +19,7 @@ public class WallTeleporter : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.tag == "Player"){
-		}
+		
 		Vector2 otherPosition = other.transform.position;
 		if (teleportX){
 			if (gameObject.transform.position.x < oppositeWall.gameObject.transform.position.x){ //This wall is on the left
@@ -38,5 +38,7 @@ public class WallTeleporter : MonoBehaviour {
 		}
 
 		other.transform.position = otherPosition;
+		}
+		else {Destroy(other.gameObject);}
 	}
 }
