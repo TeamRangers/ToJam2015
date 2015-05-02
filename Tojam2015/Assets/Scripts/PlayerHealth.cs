@@ -38,6 +38,7 @@ public class PlayerHealth : MonoBehaviour {
 		isDead = true;
 
 		gameObject.SetActive(false);
+		GetComponent<playerController>().reticle.gameObject.SetActive(false);
 	}
 
 }
