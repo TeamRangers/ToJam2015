@@ -16,6 +16,6 @@ public class ReticleController : MonoBehaviour {
 		float HorizontalMovement = Input.GetAxis(MouseX);
 		float VerticalMovement = Input.GetAxis(MouseY);
 
-		GetComponent<Rigidbody2D>().velocity = new Vector2(HorizontalMovement, VerticalMovement) * speed;
+		GetComponent<Rigidbody2D>().velocity = new Vector2(HorizontalMovement, VerticalMovement) * speed; //Move reticle based on the input
 	}
 }

@@ -18,12 +18,12 @@ public class WallTeleporter : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.gameObject.tag == "Player"){
+		if (other.gameObject.tag == "Player"){ //Check if a player bumped into us
 		
-		Vector2 otherPosition = other.transform.position;
-		if (teleportX){
+		Vector2 otherPosition = other.transform.position; //Get player's current position
+		if (teleportX){ //Check if we are supposed to teleport on X axis
 			if (gameObject.transform.position.x < oppositeWall.gameObject.transform.position.x){ //This wall is on the left
-				otherPosition.x = oppositeWall.transform.position.x - offset;
+				otherPosition.x = oppositeWall.transform.position.x - offset; //Teleport player to the opposite wall, but not directly on top of it
 			}
 			else {otherPosition.x = oppositeWall.transform.position.x + offset;}
 		}
