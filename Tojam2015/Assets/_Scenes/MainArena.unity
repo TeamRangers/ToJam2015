@@ -1023,7 +1023,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: jumpForce
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: horizontalAxis
@@ -2152,9 +2152,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1750705751}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd385ae32722da84bab4a169f08651d9, type: 3}
+  m_Script: {fileID: 11500000, guid: d806456a1491c36439a68e672a036fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Horizontal: P2_Mouse X
+  Vertical: P2_Mouse Y
+  player: {fileID: 1744680469}
 --- !u!23 &1750705754
 MeshRenderer:
   m_ObjectHideFlags: 0
