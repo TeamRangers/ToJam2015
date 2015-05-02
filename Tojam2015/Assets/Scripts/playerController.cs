@@ -48,7 +48,7 @@ public class playerController : MonoBehaviour {
 			Vector3 target = reticle.transform.position;
 			target.z = 0;
 			Quaternion projectileRotation = Quaternion.LookRotation(target - transform.position);
-			Instantiate(projectileObject, Vector3.MoveTowards(transform.position, target, 1), projectileRotation);
+            Instantiate(projectileObject, Vector3.MoveTowards(transform.position, target, 1), projectileRotation);
 	}
 }
 }

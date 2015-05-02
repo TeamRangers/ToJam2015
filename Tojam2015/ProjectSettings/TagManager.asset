@@ -6,6 +6,9 @@ TagManager:
   tags:
   - SphereAttractor
   - P1Reticle
+  - ForceField
+  - Player1
+  - Player2
   layers:
   - Default
   - TransparentFX

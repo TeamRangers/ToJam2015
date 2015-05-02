@@ -2,20 +2,14 @@
 using System.Collections;
 
 public class ReticleController : MonoBehaviour {
-
-	public string MouseX, MouseY;
-
-	public float speed;
-	// Use this for initialization
-	void Start () {
 	
+	// Use this for initialization
+	void Start () {	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		float HorizontalMovement = Input.GetAxis(MouseX);
-		float VerticalMovement = Input.GetAxis(MouseY);
-
-		GetComponent<Rigidbody2D>().velocity = new Vector2(HorizontalMovement, VerticalMovement) * speed;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector3(mousePos.x, mousePos.y, 0);
 	}
 }

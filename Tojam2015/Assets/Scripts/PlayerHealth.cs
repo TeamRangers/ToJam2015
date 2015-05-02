@@ -10,35 +10,26 @@ public class PlayerHealth : MonoBehaviour {
 
 	bool isDead;
 
-	void Awake () {
+	void Start () {
 		currentHealth = startHealth;
 		healthSlider.value = startHealth;
-	}
+	}	
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-	public void TakeDamage (int amount)
+	public void TakeDamage (int damage)
 	{
-		currentHealth -= amount;
+		currentHealth = Mathf.Max(currentHealth - damage, 0);
+
 		healthSlider.value = currentHealth;
+
 		if (currentHealth <= 0 && !isDead) {
 			Death();
 		}
+
 	}
 
 	void Death() {
 		isDead = true;
-
-		gameObject.SetActive(false);
-		GetComponent<playerController>().reticle.gameObject.SetActive(false);
+		gameObject.SetActive(false);		
 	}
 
 }

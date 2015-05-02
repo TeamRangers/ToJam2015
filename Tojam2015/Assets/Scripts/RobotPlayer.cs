@@ -2,13 +2,15 @@
 using System.Collections;
 
 public class RobotPlayer : MonoBehaviour {
-
-    public ForceField forceField;
+    
     public float jumpForce;
-    public float rotationSpeed;
+    public float surfaceWalkSpeed;
+    public string horizontalAxis;
+    public string jumpButton;
     public PlayerState playerState;
 
     Animator _animator;
+    ForceField _forceField;
 
     public enum PlayerState
     {
@@ -33,6 +35,11 @@ public class RobotPlayer : MonoBehaviour {
         _surface = null;
         _animator = GetComponent<Animator>();        
 	}
+
+    void Start()
+    {
+        _forceField = GameObject.FindGameObjectWithTag("ForceField").GetComponent<ForceField>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -40,7 +47,7 @@ public class RobotPlayer : MonoBehaviour {
         if (_state == PlayerState.Floating)
         {
             // Sample gravity from field
-            _cf2D.force = forceField.GetForce(transform.position);            
+            _cf2D.force = _forceField.GetForce(transform.position);            
             _animator.SetBool("Floating", true);            
         }
         else if (_state == PlayerState.AboutToLand)
@@ -58,14 +65,14 @@ public class RobotPlayer : MonoBehaviour {
         }
         else if (_state == PlayerState.OnSurface)
         {
-            float hInput = Input.GetAxis("P1_Horizontal");
+            float hInput = Input.GetAxis(horizontalAxis);
             Vector2 surfacePosition = transform.position - _surface.transform.position;
 
             if (Mathf.Abs(hInput) > 0)
             {                
                 // Move (rotate) around planet surface
                 float theta = Mathf.Atan2(surfacePosition.y, surfacePosition.x);
-                theta -= hInput * rotationSpeed * Time.deltaTime;
+                theta -= hInput * surfaceWalkSpeed * Time.deltaTime / _surface.radius;
 
                 transform.position = _surface.transform.position + _surface.radius * new Vector3(Mathf.Cos(theta), Mathf.Sin(theta), 0);                
 
@@ -78,7 +85,7 @@ public class RobotPlayer : MonoBehaviour {
 
             transform.rotation = Quaternion.FromToRotation(Vector3.up, surfacePosition.normalized);
 
-            if (Input.GetButton("Jump"))
+            if (Input.GetButton(jumpButton))
             {                
                 // Give a nudge off the surface before turning physics back on
                 transform.position = _surface.transform.position + (Vector3) surfacePosition * 1.01f;
