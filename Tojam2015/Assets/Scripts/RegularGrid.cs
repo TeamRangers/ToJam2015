@@ -39,16 +39,26 @@ public class RegularGrid {
         q22 = new Vector2((x + 1) * _basis.x, (y + 1) * _basis.y);
 
         Vector2 fq11, fq12, fq21, fq22;
-        fq11 = _data[ x      +  y      * _xDivs];
-        fq21 = x < _xDivs ? _data[(x + 1) +  y      * _xDivs] : Vector2.zero;
-        fq12 = y < _yDivs ? _data[ x      + (y + 1) * _xDivs] : Vector2.zero;
-        fq22 = x < _xDivs && y < _yDivs ? _data[(x + 1) + (y + 1) * _xDivs] : Vector2.zero;
+        fq11 = _data[x + y * (_xDivs + 1)];
+        fq21 = x < _xDivs ? _data[(x + 1) + y * (_xDivs + 1)] : Vector2.zero;
+        fq12 = y < _yDivs ? _data[x + (y + 1) * (_xDivs + 1)] : Vector2.zero;
+        fq22 = x < _xDivs && y < _yDivs ? _data[(x + 1) + (y + 1) * (_xDivs + 1)] : Vector2.zero;
 
         Vector2 fxy1 = (q22.x - point.x) / (q22.x - q11.x) * fq11 + (point.x - q11.x) / (q22.x - q11.x) * fq21;
         Vector2 fxy2 = (q22.x - point.x) / (q22.x - q11.x) * fq12 + (point.x - q11.x) / (q22.x - q11.x) * fq22;
         Vector2 fxy  = (q22.y - point.y) / (q22.y - q11.y) * fxy1 + (point.y - q11.y) / (q22.y - q11.y) * fxy2;
 
         return fxy;
+    }
+
+    public Vector2 GetValueByIndex(int x, int y)
+    {
+        if (x < 0 || x >= _xDivs + 1 || y < 0 || y >= _yDivs + 1)
+        {
+            throw new UnityException("location out of bounds");
+        }
+
+        return _data[x + y * (_xDivs + 1)];
     }
 
     public void SetValue(Vector2 point, Vector2 value)
@@ -61,7 +71,7 @@ public class RegularGrid {
             throw new UnityException("location out of bounds");
         }
 
-        _data[x + y * _xDivs] = value;
+        _data[x + y * (_xDivs + 1)] = value;
     }
 
     public Vector2[] GetPoints()
@@ -71,7 +81,7 @@ public class RegularGrid {
         for (int y = 0; y < _yDivs + 1; ++y)
         {
             for (int x = 0; x < _xDivs + 1; ++x) {
-                points[x + y * _xDivs] = new Vector2(x * _basis.x, y * _basis.y); 
+                points[x + y * (_xDivs + 1)] = new Vector2(x * _basis.x, y * _basis.y); 
             }
         }
 
