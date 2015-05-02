@@ -23,7 +23,7 @@ public class ProjectileMover : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll) {
 
-		if (coll.gameObject.CompareTag("Player")) {
+		if (coll.gameObject.tag.Contains("Player")) {
 
 			PlayerHealth playerHealth = coll.gameObject.GetComponent<PlayerHealth>();
 

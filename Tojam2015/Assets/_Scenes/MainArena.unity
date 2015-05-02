@@ -1061,6 +1061,26 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e225d6eeb700a3340810a6bd17cc9228, type: 2}
+    - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
+      propertyPath: recoilStrength
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
+      propertyPath: attackDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
+      propertyPath: projectileObject
+      value: 
+      objectReference: {fileID: 193266, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+    - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
+      propertyPath: fire
+      value: P1_Fire1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
+      propertyPath: reticle
+      value: 
+      objectReference: {fileID: 926774019}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
   m_IsPrefabParent: 0
@@ -1498,6 +1518,26 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 29e24512060bac14ba101b9e11a80896, type: 2}
+    - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
+      propertyPath: projectileObject
+      value: 
+      objectReference: {fileID: 193266, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+    - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
+      propertyPath: reticle
+      value: 
+      objectReference: {fileID: 1750705751}
+    - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
+      propertyPath: fire
+      value: P2_Fire1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
+      propertyPath: recoilStrength
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
+      propertyPath: attackDelay
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
   m_IsPrefabParent: 0
