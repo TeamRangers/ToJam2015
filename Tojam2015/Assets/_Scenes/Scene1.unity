@@ -1255,6 +1255,14 @@ Prefab:
       propertyPath: Jump
       value: P2_Jump
       objectReference: {fileID: 0}
+    - target: {fileID: 11465364, guid: 955489aa85869874ebbd92207e8dc36c, type: 2}
+      propertyPath: activeAI
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11465364, guid: 955489aa85869874ebbd92207e8dc36c, type: 2}
+      propertyPath: aiAttackSpeed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 955489aa85869874ebbd92207e8dc36c, type: 2}
   m_IsPrefabParent: 0
