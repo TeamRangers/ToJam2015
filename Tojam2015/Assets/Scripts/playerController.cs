@@ -6,20 +6,22 @@ public class playerController : MonoBehaviour {
 	public GameObject projectileObject;
 
 	// Use this for initialization
-	public float speed;
-	public float jumpSpeed;
+	public float speed; //Speed coefficient determines thruster strenght
+	public float jumpSpeed; //Jump speed determines jump strenght
 
+
+	//Names of the inputs defined in Edit->Project->Input
 	public string Horizontal;
 	public string Vertical;
 	public string Fire;
 	public string Jump;
 
-	public bool activeAI;
-	public float aiAttackSpeed;
+	public float AttackSpeed; //Delay in seconds
+	public GameObject reticle; //Reticle object used for aiming
+
+	public bool activeAI; //Determines whether this player is controlled by AI
+
 	private float nextAttackTime;
-
-	public GameObject reticle;
-
 	private Rigidbody2D rb;
 
 	private IList<GameObject> enemies;
@@ -66,11 +68,16 @@ public class playerController : MonoBehaviour {
 	}
 }
 	void FireProjectile(){
-		Vector3 target = reticle.transform.position;
+		if (Time.time > nextAttackTime){ //Check if we are allowed to perform an attack
+		Vector3 target = reticle.transform.position; //Get reticle position
 		target.z = 0;
+
 		Quaternion projectileRotation = Quaternion.LookRotation(target - transform.position);
 		Instantiate(projectileObject, Vector3.MoveTowards(transform.position, target, 1), projectileRotation);
 		rb.AddForce((transform.position - target).normalized, ForceMode2D.Impulse);
+
+		nextAttackTime = Time.time + aiAttackSpeed;
+		}
 	}
 
 	void aiTick(){
@@ -78,10 +85,7 @@ public class playerController : MonoBehaviour {
 			if (Random.Range(0, 100) > 100/enemies.Count){continue;}
 			if (enemy.activeSelf){
 				reticle.transform.position = enemy.transform.position;
-				if (Time.time > nextAttackTime){
 				FireProjectile();
-				nextAttackTime = Time.time + aiAttackSpeed;
-				}
 				return;
 			}
 		}
