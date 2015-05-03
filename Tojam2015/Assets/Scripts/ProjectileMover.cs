@@ -7,9 +7,8 @@ public class ProjectileMover : MonoBehaviour {
 	public int lifeTime = 2;
 
 	public AudioClip[] destructionSounds;
-	public AudioClip destSnd;
-
-	AudioSource _audioSrc;
+	private SoundManager soundManager;
+	
     
     ForceField _forceField;
     ConstantForce2D _cf2D;
@@ -25,17 +24,17 @@ public class ProjectileMover : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
        
-        _forceField = GameObject.FindGameObjectWithTag("ForceField").GetComponent<ForceField>();
-		_audioSrc = GetComponent<AudioSource>(); 
+        _forceField = GameObject.FindGameObjectWithTag("ForceField").GetComponent<ForceField>(); 
+		soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
 	}
 
 	public void Fire(Vector2 direction)
 	{
-		_rb2D.AddForce (direction.normalized * projectileForce, ForceMode2D.Impulse);
+		_rb2D.AddForce (direction.normalized * projectileForce, ForceMode2D.Impulse); 
 	}
 
 	void OnCollisionEnter2D(Collision2D coll) {
-		_audioSrc.PlayOneShot(destSnd);
+
 		if (coll.gameObject.tag.Contains("Player")) {
 
 			PlayerHealth playerHealth = coll.gameObject.GetComponent<PlayerHealth>();
@@ -45,28 +44,17 @@ public class ProjectileMover : MonoBehaviour {
 			}
 
 		}
-
+		soundManager.PlaySound(destructionSounds[Random.Range(0, destructionSounds.Length - 1)]);
 		Destroy(gameObject);
 	}
 
 
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
 	void FixedUpdate()
     {
         _cf2D.force = _forceField.GetForce(transform.position);
-	}
-
-	void PlayDestructionSound(){
-		Debug.Log("Playing sound");
-		if (destructionSounds.Length > 0){
-			destructionSounds[0].LoadAudioData();
-			_audioSrc.clip = destructionSounds[0];
-			_audioSrc.PlayOneShot(destSnd);
-			
-		}
 	}
 }
