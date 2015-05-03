@@ -22,6 +22,10 @@ public class RobotPlayer : MonoBehaviour {
 	private IList<GameObject> enemies;
     public PlayerState playerState;
 
+	private bool isWalking; //This is a bool for AI to see whether he is walking;
+	private GameObject targetEnemy;
+	private float maxWalkTime = 0.75f;
+
     Animator _animator;
     ForceField _forceField;
 
@@ -89,12 +93,28 @@ public class RobotPlayer : MonoBehaviour {
             float hInput = Input.GetAxis(horizontalAxis);
             Vector2 surfacePosition = transform.position - _surface.transform.position;
 
-            if (Mathf.Abs(hInput) > 0)
+            if (Mathf.Abs(hInput) > 0 || activeAI && isWalking)
             {                
                 // Move (rotate) around planet surface
-                float theta = Mathf.Atan2(surfacePosition.y, surfacePosition.x);
-                theta -= hInput * surfaceWalkSpeed * Time.deltaTime / _surface.radius;
+				float theta = Mathf.Atan2(surfacePosition.y, surfacePosition.x);
+				if (activeAI){
+					Vector2 playerNormal = (targetEnemy.transform.position - _surface.transform.position).normalized;
+					Vector2 aiNormal = surfacePosition.normalized;
+					Vector3 cross = Vector3.Cross(playerNormal, aiNormal);
+					float playerAngle = Mathf.Atan2 (cross.magnitude, Vector2.Dot(playerNormal, aiNormal));
+					if (Mathf.Abs(playerAngle) < Mathf.PI/4){ isWalking = false;}
+					if (playerAngle > 0){ //Player is to the left
 
+						theta += surfaceWalkSpeed * Time.deltaTime / _surface.radius;
+					} else 
+					{
+						theta -=  surfaceWalkSpeed * Time.deltaTime / _surface.radius;
+					}
+				}
+				else
+				{
+                theta -= hInput * surfaceWalkSpeed * Time.deltaTime / _surface.radius;
+				}
                 transform.position = _surface.transform.position + _surface.radius * new Vector3(Mathf.Cos(theta), Mathf.Sin(theta), 0);                
 
                 _animator.SetBool("Walking", true);
@@ -106,10 +126,21 @@ public class RobotPlayer : MonoBehaviour {
 
             transform.rotation = Quaternion.FromToRotation(Vector3.up, surfacePosition.normalized);
 
-            if (Input.GetButton(jumpButton) || activeAI)
+            if (Input.GetButton(jumpButton) || activeAI && !isWalking)
             {   
 				int aiRoll;
-				if (activeAI) {aiRoll = Random.Range(1, 2);} else {aiRoll = 1;}
+				if (activeAI) {aiRoll = Random.Range(1, 2);
+				if (Random.Range(0, 100) > 20){
+						foreach (GameObject enemy in enemies) {
+							if (Random.Range(0, 100) > 100/enemies.Count){continue;}
+							if (enemy.activeSelf){
+								isWalking = true;
+								targetEnemy = enemy;
+								break;
+							}}
+					}
+				} else {aiRoll = 1;}
+
                 // Give a nudge off the surface before turning physics back on
                 transform.position = _surface.transform.position + (Vector3) surfacePosition * 1.01f;
                 _animator.SetBool("Walking", false);
