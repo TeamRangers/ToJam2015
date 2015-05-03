@@ -11,10 +11,21 @@ public class DefaultGunProperties : MonoBehaviour, WeaponProperties
 		}
 	}
 
+	public string Owner {
+		get {
+			return owner;
+		}
+		set {
+			owner = value;
+		}
+	}
+
+	private string owner;
+
 	// Use this for initialization
 	void Start ()
 	{
-	
+
 	}
 	
 	// Update is called once per frame
@@ -29,7 +40,7 @@ public class DefaultGunProperties : MonoBehaviour, WeaponProperties
 
 	Vector2 shoot(GameObject reticle) {
 		Vector2 target = reticle.transform.position; //Get reticle position
-		Vector2 projectileOrigin = (Vector2)transform.position +(Vector2)transform.up.normalized * 0.6f;
+		Vector2 projectileOrigin = (Vector2)transform.position;
 		
 		Vector2 targetDir = (target - projectileOrigin).normalized;
 		
@@ -37,9 +48,10 @@ public class DefaultGunProperties : MonoBehaviour, WeaponProperties
 		Quaternion projectileRotation = Quaternion.FromToRotation(Vector3.up, targetDir);
 		
 		//Create a new projectile, 1 unit away from us, facing the direction of the reticle
-		GameObject projectile = Instantiate(projectileObject, Vector3.MoveTowards(projectileOrigin, target, 0.5f), projectileRotation) as GameObject;            
-		ProjectileMover debug = projectile.GetComponent<ProjectileMover>();
-		debug.Fire(targetDir);
+		GameObject projectile = Instantiate(projectileObject, Vector3.MoveTowards(projectileOrigin, target, 0.5f), projectileRotation) as GameObject; 
+		ProjectileMover projectileMover = projectile.GetComponent<ProjectileMover>();
+		projectileMover.setAttacker(Owner);
+		projectileMover.Fire(targetDir);
 
 		return -targetDir;
 		//Add some recoil of a fixed magnitude

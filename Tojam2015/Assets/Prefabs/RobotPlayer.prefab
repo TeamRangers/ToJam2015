@@ -15,7 +15,7 @@ GameObject:
   - 114: {fileID: 11472684}
   m_Layer: 0
   m_Name: RobotPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -674,7 +674,7 @@ MonoBehaviour:
   jumpButton: 
   fire: 
   reticle: {fileID: 0}
-  projectileObject: {fileID: 0}
+  weaponObject: {fileID: 0}
   recoilStrength: 0
   attackDelay: 0
   activeAI: 0

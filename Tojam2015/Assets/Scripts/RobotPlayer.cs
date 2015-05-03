@@ -28,6 +28,11 @@ public class RobotPlayer : MonoBehaviour {
 	private GameObject targetEnemy;
 	private float maxWalkTime = 0.75f;
 
+	//Sounds
+	private SoundManager soundManager;
+	private AudioSource _audioSrc;
+	public AudioClip jumpLandingSound;
+
 	WeaponProperties weaponProperties;
     Animator _animator;
     ForceField _forceField;
@@ -66,12 +71,16 @@ public class RobotPlayer : MonoBehaviour {
     void Start()
     {
 		weaponProperties = (WeaponProperties)weaponObject.GetComponent(typeof(WeaponProperties));
+		weaponProperties.Owner = gameObject.name;
+
         _forceField = GameObject.FindGameObjectWithTag("ForceField").GetComponent<ForceField>();
+		soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+		_audioSrc = GetComponent<AudioSource>();
 
 		if (activeAI){ //Construct a list of enemies (everyone tagged Player except oneself)
 			enemies = new List<GameObject>();
 			for (int i = 1; i < 5; i++){
-				GameObject enemy = GameObject.FindGameObjectWithTag("Player" + i.ToString());
+				GameObject enemy = GameObject.FindGameObjectWithTag("Player");
 				if (enemy != null && enemy != gameObject) {enemies.Add(enemy);}
 			}
 
@@ -101,6 +110,8 @@ public class RobotPlayer : MonoBehaviour {
             Vector2 surfaceNormal = transform.position - _surface.transform.position;            
             transform.position = (Vector3) surfaceNormal.normalized * _surface.radius + _surface.transform.position;
             transform.rotation = Quaternion.FromToRotation(Vector3.up, surfaceNormal);
+
+			soundManager.PlaySound(jumpLandingSound);
 
             _state = playerState = PlayerState.OnSurface;
         }
@@ -140,11 +151,12 @@ public class RobotPlayer : MonoBehaviour {
 				}
 
                 transform.position = _surface.transform.position + _surface.radius * new Vector3(Mathf.Cos(theta), Mathf.Sin(theta), 0);                
-
+				_audioSrc.Play();
                 _animator.SetBool("Walking", true);
             }
             else
             {
+				_audioSrc.Stop();
                 _animator.SetBool("Walking", false);
             }
 
@@ -209,22 +221,7 @@ public class RobotPlayer : MonoBehaviour {
 	// void FireProjectile ()
     // {
 		// if (Time.time > nextAttackTime){ //Check if we are allowed to perform an attack
-			// Vector2 target = reticle.transform.position; //Get reticle position
-			// Vector2 projectileOrigin = (Vector2)transform.position +(Vector2)transform.up.normalized * 0.6f;
 
-            // Vector2 targetDir = (target - projectileOrigin).normalized;
-
-			//Determine the rotation for the projectile we are about to spawn by using the vector from us to the reticle
-			// Quaternion projectileRotation = Quaternion.FromToRotation(Vector3.up, targetDir);
-
-			//Create a new projectile, 1 unit away from us, facing the direction of the reticle
-			// GameObject projectile = Instantiate(projectileObject, Vector3.MoveTowards(projectileOrigin, target, 0.5f), projectileRotation) as GameObject;            
-            // projectile.GetComponent<ProjectileMover>().Fire(targetDir);
-			
-			//Add some recoil of a fixed magnitude
-			// _rb2D.AddForce(-targetDir * recoilStrength, ForceMode2D.Impulse);
-			
-			//nextAttackTime = Time.time + attackDelay; //Set the next attack time to be current time + delay
 		}
 	}
 

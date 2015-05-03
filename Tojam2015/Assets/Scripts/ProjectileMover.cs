@@ -5,10 +5,16 @@ public class ProjectileMover : MonoBehaviour {
 	public float projectileForce;
 	public int damage = 20;
 	public int lifeTime = 2;
+
+	public AudioClip[] destructionSounds;
+	private SoundManager soundManager;
+	
     
     ForceField _forceField;
     ConstantForce2D _cf2D;
     Rigidbody2D _rb2D;
+
+	private string attacker;
 
     void Awake()
     {
@@ -20,17 +26,22 @@ public class ProjectileMover : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
        
-        _forceField = GameObject.FindGameObjectWithTag("ForceField").GetComponent<ForceField>();
+        _forceField = GameObject.FindGameObjectWithTag("ForceField").GetComponent<ForceField>(); 
+		soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+	}
+
+	public void setAttacker(string name) {
+		attacker = name;
 	}
 
 	public void Fire(Vector2 direction)
 	{
-		_rb2D.AddForce (direction.normalized * projectileForce, ForceMode2D.Impulse);
+		_rb2D.AddForce (direction.normalized * projectileForce, ForceMode2D.Impulse); 
 	}
 
 	void OnCollisionEnter2D(Collision2D coll) {
 
-		if (coll.gameObject.tag.Contains("Player")) {
+		if (coll.gameObject.CompareTag("Player") && !coll.gameObject.name.Equals(attacker)) {
 
 			PlayerHealth playerHealth = coll.gameObject.GetComponent<PlayerHealth>();
 
@@ -39,13 +50,13 @@ public class ProjectileMover : MonoBehaviour {
 			}
 
 		}
-
+		soundManager.PlaySound(destructionSounds[Random.Range(0, destructionSounds.Length - 1)], 0.5f);
 		Destroy(gameObject);
 	}
 
+
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
 	void FixedUpdate()
