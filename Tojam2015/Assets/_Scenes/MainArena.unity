@@ -278,7 +278,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1001 &237184698
 Prefab:
   m_ObjectHideFlags: 0
@@ -1145,7 +1145,7 @@ Prefab:
     - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: projectileObject
       value: 
-      objectReference: {fileID: 193266, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+      objectReference: {fileID: 123412, guid: ccaf66b27d2388848ac8aed99e66b20d, type: 2}
     - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: fire
       value: P1_Fire1
@@ -1589,7 +1589,7 @@ Prefab:
     - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: projectileObject
       value: 
-      objectReference: {fileID: 193266, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+      objectReference: {fileID: 123412, guid: ccaf66b27d2388848ac8aed99e66b20d, type: 2}
     - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: reticle
       value: 
@@ -1608,7 +1608,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: activeAI
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
@@ -1695,7 +1695,7 @@ Transform:
   - {fileID: 418589398}
   - {fileID: 799265586}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
 --- !u!1001 &1418425027
 Prefab:
   m_ObjectHideFlags: 0
