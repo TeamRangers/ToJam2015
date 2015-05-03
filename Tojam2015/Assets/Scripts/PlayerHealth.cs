@@ -2,17 +2,20 @@
 using UnityEngine.UI;
 using System.Collections;
 
+[RequireComponent(typeof(RobotPlayer))]
 public class PlayerHealth : MonoBehaviour {
 
 	public int startHealth = 100;
 	public int currentHealth;
 	public Slider healthSlider;
 
-	bool isDead;
+    RobotPlayer _player;
+	bool _isDead;
 
 	void Start () {
 		currentHealth = startHealth;
 		healthSlider.value = startHealth;
+        _player = GetComponent<RobotPlayer>();
 	}	
 
 	public void TakeDamage (int damage)
@@ -21,15 +24,15 @@ public class PlayerHealth : MonoBehaviour {
 
 		healthSlider.value = currentHealth;
 
-		if (currentHealth <= 0 && !isDead) {
+		if (currentHealth <= 0 && !_isDead) {
 			Death();
 		}
 
 	}
 
 	void Death() {
-		isDead = true;
-		gameObject.SetActive(false);		
+		_isDead = true;
+        _player.Die();		
 	}
 
 }

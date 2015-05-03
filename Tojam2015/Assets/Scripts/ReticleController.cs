@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class ReticleController : MonoBehaviour {
-	
+
+	public Transform playerTransform;
 	// Use this for initialization
 	void Start () {	
 	}
@@ -10,6 +11,9 @@ public class ReticleController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		transform.position = new Vector3(mousePos.x, mousePos.y, 0);
+		Vector3 playerProjectileOrigin = playerTransform.position + playerTransform.up * 0.6f;
+		Vector3 maxAllowed = mousePos - playerProjectileOrigin;
+		maxAllowed = Vector3.ClampMagnitude(maxAllowed, 3);
+		transform.position =  playerProjectileOrigin + maxAllowed;
 	}
 }

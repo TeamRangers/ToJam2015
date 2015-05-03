@@ -47,6 +47,13 @@ public class RobotPlayer : MonoBehaviour {
     Rigidbody2D _rb2D;
     ConstantForce2D _cf2D;
 
+    public void Die()
+    {
+        _state = PlayerState.Dead;
+        _animator.SetBool("Dead", true);
+        _rb2D.GetComponent<Collider2D>().enabled = false;
+    }
+
 	// Use this for initialization
 	void Awake () {
         _rb2D = GetComponent<Rigidbody2D>();
@@ -102,28 +109,36 @@ public class RobotPlayer : MonoBehaviour {
             float hInput = Input.GetAxis(horizontalAxis);
             Vector2 surfacePosition = transform.position - _surface.transform.position;
 
-            if (Mathf.Abs(hInput) > 0 || activeAI && isWalking)
+            if (Mathf.Abs(hInput) > 0 || (activeAI && isWalking))
             {                
                 // Move (rotate) around planet surface
 				float theta = Mathf.Atan2(surfacePosition.y, surfacePosition.x);
-				if (activeAI){
+
+				if (activeAI) {
+
 					Vector2 playerNormal = (targetEnemy.transform.position - _surface.transform.position).normalized;
 					Vector2 aiNormal = surfacePosition.normalized;
-					Vector3 cross = Vector3.Cross(playerNormal, aiNormal);
-					float playerAngle = Mathf.Atan2 (cross.magnitude, Vector2.Dot(playerNormal, aiNormal));
-					if (Mathf.Abs(playerAngle) < Mathf.PI/4){ isWalking = false;}
-					if (playerAngle > 0){ //Player is to the left
+					
+                    float crossMag = aiNormal.x * playerNormal.y - aiNormal.y * playerNormal.x;
+                    float playerAngle = Mathf.Atan2(crossMag, Vector2.Dot(aiNormal, playerNormal));
 
-						theta += surfaceWalkSpeed * Time.deltaTime / _surface.radius;
-					} else 
+					if (Mathf.Abs(playerAngle) < Mathf.PI * 0.05f) { isWalking = false; }                    
+
+					if (playerAngle < 0)
+                    {
+                        // Player is to the left
+						theta -= surfaceWalkSpeed * Time.deltaTime / _surface.radius;
+					}
+                    else 
 					{
-						theta -=  surfaceWalkSpeed * Time.deltaTime / _surface.radius;
+						theta += surfaceWalkSpeed * Time.deltaTime / _surface.radius;
 					}
 				}
 				else
 				{
-                theta -= hInput * surfaceWalkSpeed * Time.deltaTime / _surface.radius;
+                    theta -= hInput * surfaceWalkSpeed * Time.deltaTime / _surface.radius;
 				}
+
                 transform.position = _surface.transform.position + _surface.radius * new Vector3(Mathf.Cos(theta), Mathf.Sin(theta), 0);                
 
                 _animator.SetBool("Walking", true);
@@ -135,7 +150,7 @@ public class RobotPlayer : MonoBehaviour {
 
             transform.rotation = Quaternion.FromToRotation(Vector3.up, surfacePosition.normalized);
 
-            if (Input.GetButton(jumpButton) || activeAI && !isWalking)
+            if (Input.GetButton(jumpButton) || (activeAI && !isWalking))
             {   
 				int aiRoll;
 				if (activeAI) {aiRoll = Random.Range(1, 2);
@@ -163,13 +178,14 @@ public class RobotPlayer : MonoBehaviour {
             // Placeholder
             _state = playerState = PlayerState.Floating;            
         }
-
+        if (_state != PlayerState.Dead)
+        {
 		if (activeAI){AiTick(); return;}
 		//Handle firing here
 		if (Input.GetButtonDown (fire)){
 			AttackUsingWeapon();
 		}
-
+	}
 	}
 
     void OnCollisionEnter2D(Collision2D col2D)
@@ -190,6 +206,23 @@ public class RobotPlayer : MonoBehaviour {
 
 			//Add some recoil of a fixed magnitude
 			_rb2D.AddForce(recoilVector * recoilStrength, ForceMode2D.Impulse);
+	// void FireProjectile ()
+    // {
+		// if (Time.time > nextAttackTime){ //Check if we are allowed to perform an attack
+			// Vector2 target = reticle.transform.position; //Get reticle position
+			// Vector2 projectileOrigin = (Vector2)transform.position +(Vector2)transform.up.normalized * 0.6f;
+
+            // Vector2 targetDir = (target - projectileOrigin).normalized;
+
+			//Determine the rotation for the projectile we are about to spawn by using the vector from us to the reticle
+			// Quaternion projectileRotation = Quaternion.FromToRotation(Vector3.up, targetDir);
+
+			//Create a new projectile, 1 unit away from us, facing the direction of the reticle
+			// GameObject projectile = Instantiate(projectileObject, Vector3.MoveTowards(projectileOrigin, target, 0.5f), projectileRotation) as GameObject;            
+            // projectile.GetComponent<ProjectileMover>().Fire(targetDir);
+			
+			//Add some recoil of a fixed magnitude
+			// _rb2D.AddForce(-targetDir * recoilStrength, ForceMode2D.Impulse);
 			
 			//nextAttackTime = Time.time + attackDelay; //Set the next attack time to be current time + delay
 		}

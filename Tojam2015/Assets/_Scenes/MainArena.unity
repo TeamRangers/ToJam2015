@@ -278,7 +278,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1001 &237184698
 Prefab:
   m_ObjectHideFlags: 0
@@ -1096,7 +1096,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: jumpForce
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: horizontalAxis
@@ -1145,7 +1145,7 @@ Prefab:
     - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: projectileObject
       value: 
-      objectReference: {fileID: 193266, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+      objectReference: {fileID: 123412, guid: ccaf66b27d2388848ac8aed99e66b20d, type: 2}
     - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: fire
       value: P1_Fire1
@@ -1211,6 +1211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd385ae32722da84bab4a169f08651d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransform: {fileID: 1565221197}
 --- !u!4 &926774024
 Transform:
   m_ObjectHideFlags: 0
@@ -1547,7 +1548,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: jumpForce
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: horizontalAxis
@@ -1588,7 +1589,7 @@ Prefab:
     - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: projectileObject
       value: 
-      objectReference: {fileID: 193266, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+      objectReference: {fileID: 123412, guid: ccaf66b27d2388848ac8aed99e66b20d, type: 2}
     - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: reticle
       value: 
@@ -1694,7 +1695,7 @@ Transform:
   - {fileID: 418589398}
   - {fileID: 799265586}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
 --- !u!1001 &1418425027
 Prefab:
   m_ObjectHideFlags: 0
@@ -1757,6 +1758,10 @@ Prefab:
     - target: {fileID: 11448632, guid: 692c22de3a96053418540c9622d2003f, type: 2}
       propertyPath: fieldYDivisions
       value: 54
+      objectReference: {fileID: 0}
+    - target: {fileID: 11448632, guid: 692c22de3a96053418540c9622d2003f, type: 2}
+      propertyPath: showVectors
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 692c22de3a96053418540c9622d2003f, type: 2}
@@ -2025,7 +2030,7 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
+  m_IgnoreReversedGraphics: 0
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
