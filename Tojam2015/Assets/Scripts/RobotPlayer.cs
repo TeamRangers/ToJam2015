@@ -63,6 +63,9 @@ public class RobotPlayer : MonoBehaviour {
 				GameObject enemy = GameObject.FindGameObjectWithTag("Player" + i.ToString());
 				if (enemy != null && enemy != gameObject) {enemies.Add(enemy);}
 			}
+
+			//Disable reticle renderer since AI doesn't need it
+			reticle.GetComponent<SpriteRenderer>().enabled = false;
 		}
     }
 	
