@@ -186,14 +186,16 @@ public class RobotPlayer : MonoBehaviour {
 
 	void FireProjectile(){
 		if (Time.time > nextAttackTime){ //Check if we are allowed to perform an attack
-			Vector2 target = reticle.transform.position; //Get reticle position            
-            Vector2 targetDir = (target - (Vector2) transform.position).normalized;
+			Vector2 target = reticle.transform.position; //Get reticle position
+			Vector2 projectileOrigin = (Vector2)transform.position +(Vector2)transform.up.normalized * 0.6f;
+
+            Vector2 targetDir = (target - projectileOrigin).normalized;
 
 			//Determine the rotation for the projectile we are about to spawn by using the vector from us to the reticle
 			Quaternion projectileRotation = Quaternion.FromToRotation(Vector3.up, targetDir);
 
 			//Create a new projectile, 1 unit away from us, facing the direction of the reticle
-			GameObject projectile = Instantiate(projectileObject, Vector3.MoveTowards(transform.position, target, 1.5f), projectileRotation) as GameObject;            
+			GameObject projectile = Instantiate(projectileObject, Vector3.MoveTowards(projectileOrigin, target, 0.5f), projectileRotation) as GameObject;            
             projectile.GetComponent<ProjectileMover>().Fire(targetDir);
 			
 			//Add some recoil of a fixed magnitude
