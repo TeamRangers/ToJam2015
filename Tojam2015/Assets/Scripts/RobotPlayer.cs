@@ -55,6 +55,7 @@ public class RobotPlayer : MonoBehaviour {
         _state = PlayerState.Dead;
         _animator.SetBool("Dead", true);
         _rb2D.GetComponent<Collider2D>().enabled = false;
+        SceneManager.Instance.GameOver(this.name == "RobotPlayer1" ? 2 : 1);
     }
 
 	// Use this for initialization
