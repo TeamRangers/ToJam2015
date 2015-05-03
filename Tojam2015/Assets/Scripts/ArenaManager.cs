@@ -60,6 +60,6 @@ public class ArenaManager : MonoBehaviour {
 
     public void LoadMainMenu()
     {
-        Application.LoadLevel("MainMenu");
+        Application.LoadLevel("MainMenu");        
     }
 }

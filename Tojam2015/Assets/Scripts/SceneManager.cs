@@ -7,35 +7,23 @@ public class SceneManager : MonoBehaviour {
     private static SceneManager _instance = null;
     public static SceneManager Instance
     {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = GameObject.FindObjectOfType<SceneManager>();
-                DontDestroyOnLoad(_instance.gameObject);
-            }
-
-            return _instance;
-        }
+        get { return _instance; }
     }
 
     void Awake()
     {
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(this);
-        }
-        else if (this != _instance)
-        {
-            Destroy(this.gameObject);
-        }
+        _instance = this;
     }
 
     public GameObject forceField;
     public GameObject gameOverPanel;
     public GameObject playerOneWinsText;
-    public GameObject playerTwoWinsText;
+    public GameObject playerTwoWinsText;  
+
+    public void Reset()
+    {
+        gameOverPanel.SetActive(false);
+    }
 
     public void GameOver(int winner)
     {
