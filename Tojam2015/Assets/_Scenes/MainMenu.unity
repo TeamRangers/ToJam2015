@@ -211,6 +211,45 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 143343078}
   m_Mesh: {fileID: 4300004, guid: 398ddde4274657a43ac3f45a3c17cca6, type: 3}
+--- !u!1 &163722457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 163722459}
+  - 114: {fileID: 163722458}
+  m_Layer: 0
+  m_Name: MainMenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &163722458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163722457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f76ea81f5db57ad42b8809eb4d6ab937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &163722459
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163722457}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .0244037211, y: .820600271, z: -1.0078125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
 --- !u!1 &212703018
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,8 +931,8 @@ GameObject:
   - 114: {fileID: 716988551}
   - 114: {fileID: 716988550}
   m_Layer: 5
-  m_Name: Button 1
-  m_TagString: Untagged
+  m_Name: TwoPlayerButton
+  m_TagString: TwoPlayerButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -955,8 +994,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1879890399}
-        m_MethodName: LoadTwoPlayer
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1468,8 +1507,8 @@ GameObject:
   - 114: {fileID: 1522085423}
   - 114: {fileID: 1522085422}
   m_Layer: 5
-  m_Name: Button 2
-  m_TagString: Untagged
+  m_Name: MuteButton
+  m_TagString: MuteButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1531,8 +1570,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 213142062}
-        m_MethodName: Toggle
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1778,8 +1817,8 @@ GameObject:
   - 114: {fileID: 1700047651}
   - 114: {fileID: 1700047650}
   m_Layer: 5
-  m_Name: Button
-  m_TagString: Untagged
+  m_Name: OnePlayerButton
+  m_TagString: OnePlayerButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1823,8 +1862,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1879890399}
-        m_MethodName: LoadOnePlayer
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
