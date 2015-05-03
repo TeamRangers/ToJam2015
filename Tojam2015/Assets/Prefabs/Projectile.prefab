@@ -105,6 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   damage: 20
+  lifeTime: 2
 --- !u!247 &24782030
 ConstantForce2D:
   m_ObjectHideFlags: 1
