@@ -44,6 +44,13 @@ public class RobotPlayer : MonoBehaviour {
     Rigidbody2D _rb2D;
     ConstantForce2D _cf2D;
 
+    public void Die()
+    {
+        _state = PlayerState.Dead;
+        _animator.SetBool("Dead", true);
+        _rb2D.GetComponent<Collider2D>().enabled = false;
+    }
+
 	// Use this for initialization
 	void Awake () {
         _rb2D = GetComponent<Rigidbody2D>();
@@ -166,12 +173,16 @@ public class RobotPlayer : MonoBehaviour {
             _state = playerState = PlayerState.Floating;            
         }
 
-		if (activeAI){AiTick(); return;}
-		//Handle firing here
-		if (Input.GetButtonDown (fire)){
-			FireProjectile();
-		}
+        if (_state != PlayerState.Dead)
+        {
+            if (activeAI) { AiTick(); return; }
 
+            //Handle firing here
+            if (Input.GetButtonDown(fire))
+            {
+                FireProjectile();
+            }
+        }
 	}
 
     void OnCollisionEnter2D(Collision2D col2D)
@@ -184,7 +195,8 @@ public class RobotPlayer : MonoBehaviour {
     }
 
 
-	void FireProjectile(){
+	void FireProjectile ()
+    {
 		if (Time.time > nextAttackTime){ //Check if we are allowed to perform an attack
 			Vector2 target = reticle.transform.position; //Get reticle position            
             Vector2 targetDir = (target - (Vector2) transform.position).normalized;
