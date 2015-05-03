@@ -32,6 +32,13 @@ public class ArenaManager : MonoBehaviour {
         }        
     }
 
+	void Update(){
+		if (Input.GetKeyDown("escape")){
+			Cursor.visible = true;
+			Application.LoadLevel("MainMenu");
+		}
+	}
+
     int _numberOfPlayers = 1;
 
     public int NumberOfPlayers

@@ -5,7 +5,8 @@ public class ReticleController : MonoBehaviour {
 
 	public Transform playerTransform;
 	// Use this for initialization
-	void Start () {	
+	void Start () {
+		Cursor.visible = false;
 	}
 	
 	// Update is called once per frame
