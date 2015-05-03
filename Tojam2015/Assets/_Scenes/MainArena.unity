@@ -508,7 +508,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 467104, guid: be07784c1969aaf40955a4d8194f872a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.46999979
+      value: -6.80000019
       objectReference: {fileID: 0}
     - target: {fileID: 467104, guid: be07784c1969aaf40955a4d8194f872a, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1473,6 +1473,10 @@ Prefab:
       propertyPath: jumpLandingSound
       value: 
       objectReference: {fileID: 8300000, guid: 449fe41d73e941142894079a63e75bf2, type: 3}
+    - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
+      propertyPath: maxJumpTorque
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
   m_IsPrefabParent: 0
@@ -2319,6 +2323,10 @@ Prefab:
       propertyPath: jumpLandingSound
       value: 
       objectReference: {fileID: 8300000, guid: 449fe41d73e941142894079a63e75bf2, type: 3}
+    - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
+      propertyPath: maxJumpTorque
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
   m_IsPrefabParent: 0

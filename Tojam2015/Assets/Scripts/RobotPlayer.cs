@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class RobotPlayer : MonoBehaviour {
     
     public float jumpForce;
+	public float maxJumpTorque;
     public float surfaceWalkSpeed;
     public string horizontalAxis;
     public string jumpButton;
@@ -182,7 +183,8 @@ public class RobotPlayer : MonoBehaviour {
                 transform.position = _surface.transform.position + (Vector3) surfacePosition * 1.01f;
                 _animator.SetBool("Walking", false);
                 _rb2D.isKinematic = false;
-                _rb2D.AddForce(surfacePosition.normalized * jumpForce * aiRoll, ForceMode2D.Impulse);                
+                _rb2D.AddForce(surfacePosition.normalized * jumpForce * aiRoll, ForceMode2D.Impulse);     
+				_rb2D.AddTorque(Random.Range(-maxJumpTorque, maxJumpTorque));
                 _state = playerState = PlayerState.LeavingSurface;           
             }
         }
