@@ -196,6 +196,11 @@ MonoBehaviour:
   projectileForce: 10
   damage: 20
   lifeTime: 2
+  destructionSounds:
+  - {fileID: 8300000, guid: 2b079a8c84081ed4a840738c483a18c3, type: 3}
+  - {fileID: 8300000, guid: 03a8a9035b49c2a4a8b9dd35e015a6a6, type: 3}
+  - {fileID: 8300000, guid: 9ac7c3695887f2b429e750000eb22f2d, type: 3}
+  - {fileID: 8300000, guid: fb9a410ff5b9fc44c8fab36f90dfab13, type: 3}
 --- !u!212 &21269828
 SpriteRenderer:
   m_ObjectHideFlags: 1
