@@ -22,6 +22,7 @@ public class SceneManager : MonoBehaviour {
     public GameObject playerOneWinsText;
     public GameObject playerTwoWinsText;
     public GameObject mainMenuButton;
+    public GameObject P2Reticle;
 
     public void GameOver(int winner)
     {
@@ -53,6 +54,7 @@ public class SceneManager : MonoBehaviour {
             foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
             {
                 player.GetComponent<RobotPlayer>().activeAI = false;
+                P2Reticle.GetComponent<SpriteRenderer>().enabled = true;
             }
         }
         
