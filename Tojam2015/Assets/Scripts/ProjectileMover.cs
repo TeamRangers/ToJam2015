@@ -40,18 +40,19 @@ public class ProjectileMover : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll) {
+		if (!coll.gameObject.name.Equals(attacker)) {
+			if (coll.gameObject.CompareTag("Player")) {
 
-		if (coll.gameObject.CompareTag("Player") && !coll.gameObject.name.Equals(attacker)) {
+				PlayerHealth playerHealth = coll.gameObject.GetComponent<PlayerHealth>();
 
-			PlayerHealth playerHealth = coll.gameObject.GetComponent<PlayerHealth>();
+				if (playerHealth.currentHealth > 0) {
+					playerHealth.TakeDamage(damage);
+				}
 
-			if (playerHealth.currentHealth > 0) {
-				playerHealth.TakeDamage(damage);
 			}
-
+			soundManager.PlaySound(destructionSounds[Random.Range(0, destructionSounds.Length - 1)], 0.5f);
+			Destroy(gameObject);
 		}
-		soundManager.PlaySound(destructionSounds[Random.Range(0, destructionSounds.Length - 1)], 0.5f);
-		Destroy(gameObject);
 	}
 
 
