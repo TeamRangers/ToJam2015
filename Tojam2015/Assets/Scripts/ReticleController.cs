@@ -3,19 +3,17 @@ using System.Collections;
 
 public class ReticleController : MonoBehaviour {
 
-	public string MouseX, MouseY;
-
-	public float speed;
+	public Transform playerTransform;
 	// Use this for initialization
-	void Start () {
-	
+	void Start () {	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		float HorizontalMovement = Input.GetAxis(MouseX);
-		float VerticalMovement = Input.GetAxis(MouseY);
-
-		GetComponent<Rigidbody2D>().velocity = new Vector2(HorizontalMovement, VerticalMovement) * speed;
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector3 playerProjectileOrigin = playerTransform.position + playerTransform.up * 0.6f;
+		Vector3 maxAllowed = mousePos - playerProjectileOrigin;
+		maxAllowed = Vector3.ClampMagnitude(maxAllowed, 3);
+		transform.position =  playerProjectileOrigin + maxAllowed;
 	}
 }

@@ -11,6 +11,7 @@ public class ForceField : MonoBehaviour {
     public float forceConstant = 1.0f;
 
     RegularGrid _forces;
+    float _maxForceMagnitude = 0.0f;
 
     public void Generate()
     {
@@ -25,6 +26,7 @@ public class ForceField : MonoBehaviour {
                 Vector2 distance = (Vector2) goAttractor.transform.position - point - (Vector2) transform.position;
                 SphereAttractor attractor = goAttractor.GetComponent<SphereAttractor>();
 
+                // Inside attractor sphere
                 if (distance.magnitude <= attractor.radius)
                 {
                     force = Vector2.zero;
@@ -35,6 +37,7 @@ public class ForceField : MonoBehaviour {
             }
 
             _forces.SetValue(point, force);
+            _maxForceMagnitude = Mathf.Max(force.magnitude, _maxForceMagnitude);
         }
     }
 
@@ -75,7 +78,7 @@ public class ForceField : MonoBehaviour {
                 if (showVectors && _forces != null)
                 {
                     Gizmos.color = Color.yellow;
-                    Gizmos.DrawLine(position, position + (Vector3) _forces.GetValue((Vector2) (position - transform.position)) / forceConstant);
+                    Gizmos.DrawLine(position, position + (Vector3)_forces.GetValue((Vector2)(position - transform.position)) / _maxForceMagnitude);
                 }
             }
         }
