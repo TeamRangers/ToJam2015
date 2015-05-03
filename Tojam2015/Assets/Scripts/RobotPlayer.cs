@@ -30,6 +30,7 @@ public class RobotPlayer : MonoBehaviour {
 
 	//Sounds
 	private SoundManager soundManager;
+	private AudioSource _audioSrc;
 	public AudioClip jumpLandingSound;
 
 	WeaponProperties weaponProperties;
@@ -72,6 +73,7 @@ public class RobotPlayer : MonoBehaviour {
 		weaponProperties = (WeaponProperties)weaponObject.GetComponent(typeof(WeaponProperties));
         _forceField = GameObject.FindGameObjectWithTag("ForceField").GetComponent<ForceField>();
 		soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+		_audioSrc = GetComponent<AudioSource>();
 
 		if (activeAI){ //Construct a list of enemies (everyone tagged Player except oneself)
 			enemies = new List<GameObject>();
@@ -147,11 +149,12 @@ public class RobotPlayer : MonoBehaviour {
 				}
 
                 transform.position = _surface.transform.position + _surface.radius * new Vector3(Mathf.Cos(theta), Mathf.Sin(theta), 0);                
-
+				_audioSrc.Play();
                 _animator.SetBool("Walking", true);
             }
             else
             {
+				_audioSrc.Stop();
                 _animator.SetBool("Walking", false);
             }
 
