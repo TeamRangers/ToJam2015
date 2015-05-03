@@ -66,12 +66,14 @@ public class RobotPlayer : MonoBehaviour {
     void Start()
     {
 		weaponProperties = (WeaponProperties)weaponObject.GetComponent(typeof(WeaponProperties));
+		weaponProperties.Owner = gameObject.name;
+
         _forceField = GameObject.FindGameObjectWithTag("ForceField").GetComponent<ForceField>();
 
 		if (activeAI){ //Construct a list of enemies (everyone tagged Player except oneself)
 			enemies = new List<GameObject>();
 			for (int i = 1; i < 5; i++){
-				GameObject enemy = GameObject.FindGameObjectWithTag("Player" + i.ToString());
+				GameObject enemy = GameObject.FindGameObjectWithTag("Player");
 				if (enemy != null && enemy != gameObject) {enemies.Add(enemy);}
 			}
 
@@ -209,22 +211,7 @@ public class RobotPlayer : MonoBehaviour {
 	// void FireProjectile ()
     // {
 		// if (Time.time > nextAttackTime){ //Check if we are allowed to perform an attack
-			// Vector2 target = reticle.transform.position; //Get reticle position
-			// Vector2 projectileOrigin = (Vector2)transform.position +(Vector2)transform.up.normalized * 0.6f;
 
-            // Vector2 targetDir = (target - projectileOrigin).normalized;
-
-			//Determine the rotation for the projectile we are about to spawn by using the vector from us to the reticle
-			// Quaternion projectileRotation = Quaternion.FromToRotation(Vector3.up, targetDir);
-
-			//Create a new projectile, 1 unit away from us, facing the direction of the reticle
-			// GameObject projectile = Instantiate(projectileObject, Vector3.MoveTowards(projectileOrigin, target, 0.5f), projectileRotation) as GameObject;            
-            // projectile.GetComponent<ProjectileMover>().Fire(targetDir);
-			
-			//Add some recoil of a fixed magnitude
-			// _rb2D.AddForce(-targetDir * recoilStrength, ForceMode2D.Impulse);
-			
-			//nextAttackTime = Time.time + attackDelay; //Set the next attack time to be current time + delay
 		}
 	}
 

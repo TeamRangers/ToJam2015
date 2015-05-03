@@ -1096,7 +1096,7 @@ Prefab:
       objectReference: {fileID: 636569134}
     - target: {fileID: 107740, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: m_TagString
-      value: Player1
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 107740, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: m_Name
@@ -1556,7 +1556,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 107740, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: m_TagString
-      value: Player2
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 11472684, guid: 0d830d3502f205f4588684d6061f22a4, type: 2}
       propertyPath: jumpForce

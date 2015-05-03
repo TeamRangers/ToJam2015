@@ -10,6 +10,8 @@ public class ProjectileMover : MonoBehaviour {
     ConstantForce2D _cf2D;
     Rigidbody2D _rb2D;
 
+	private string attacker;
+
     void Awake()
     {
         _cf2D = GetComponent<ConstantForce2D>();
@@ -23,6 +25,10 @@ public class ProjectileMover : MonoBehaviour {
         _forceField = GameObject.FindGameObjectWithTag("ForceField").GetComponent<ForceField>();
 	}
 
+	public void setAttacker(string name) {
+		attacker = name;
+	}
+
 	public void Fire(Vector2 direction)
 	{
 		_rb2D.AddForce (direction.normalized * projectileForce, ForceMode2D.Impulse);
@@ -30,7 +36,7 @@ public class ProjectileMover : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll) {
 
-		if (coll.gameObject.tag.Contains("Player")) {
+		if (coll.gameObject.CompareTag("Player") && !coll.gameObject.name.Equals(attacker)) {
 
 			PlayerHealth playerHealth = coll.gameObject.GetComponent<PlayerHealth>();
 
