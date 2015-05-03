@@ -4,6 +4,7 @@ using System.Collections;
 public class ProjectileMover : MonoBehaviour {
 	public float speed;
 	public int damage = 20;
+	public int lifeTime = 2;
     
     ForceField _forceField;
     ConstantForce2D _cf2D;
@@ -13,6 +14,7 @@ public class ProjectileMover : MonoBehaviour {
     {
         _cf2D = GetComponent<ConstantForce2D>();
         _rb2D = GetComponent<Rigidbody2D>();
+		Destroy (gameObject, lifeTime);
     }
 
 	// Use this for initialization
