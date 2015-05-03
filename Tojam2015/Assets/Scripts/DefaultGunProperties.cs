@@ -40,7 +40,7 @@ public class DefaultGunProperties : MonoBehaviour, WeaponProperties
 
 	Vector2 shoot(GameObject reticle) {
 		Vector2 target = reticle.transform.position; //Get reticle position
-		Vector2 projectileOrigin = (Vector2)transform.position +(Vector2)transform.up.normalized * 0.6f;
+		Vector2 projectileOrigin = (Vector2)transform.position;
 		
 		Vector2 targetDir = (target - projectileOrigin).normalized;
 		
