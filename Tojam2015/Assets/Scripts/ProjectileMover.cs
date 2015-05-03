@@ -44,7 +44,7 @@ public class ProjectileMover : MonoBehaviour {
 			}
 
 		}
-		soundManager.PlaySound(destructionSounds[Random.Range(0, destructionSounds.Length - 1)]);
+		soundManager.PlaySound(destructionSounds[Random.Range(0, destructionSounds.Length - 1)], 0.5f);
 		Destroy(gameObject);
 	}
 
