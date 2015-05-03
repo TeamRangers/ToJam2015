@@ -12,6 +12,7 @@ TagManager:
   - Player3
   - Player4
   - SoundManager
+  - ArenaManager
   layers:
   - Default
   - TransparentFX
