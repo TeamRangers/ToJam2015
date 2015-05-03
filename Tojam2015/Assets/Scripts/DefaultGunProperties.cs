@@ -23,23 +23,27 @@ public class DefaultGunProperties : MonoBehaviour, WeaponProperties
 	
 	}
 
-	public Vector3 attack(GameObject reticle) {
+	public Vector2 attack(GameObject reticle) {
 		return shoot(reticle);
 	}
 
-	Vector3 shoot(GameObject reticle) {
-		Vector3 target = reticle.transform.position; //Get reticle position
-		target.z = 1;
+	Vector2 shoot(GameObject reticle) {
+		Vector2 target = reticle.transform.position; //Get reticle position
+		Vector2 projectileOrigin = (Vector2)transform.position +(Vector2)transform.up.normalized * 0.6f;
+		
+		Vector2 targetDir = (target - projectileOrigin).normalized;
 		
 		//Determine the rotation for the projectile we are about to spawn by using the vector from us to the reticle
-		Quaternion projectileRotation = Quaternion.LookRotation(target - transform.position);
+		Quaternion projectileRotation = Quaternion.FromToRotation(Vector3.up, targetDir);
 		
 		//Create a new projectile, 1 unit away from us, facing the direction of the reticle
-		Instantiate(projectileObject, Vector3.MoveTowards(transform.position, target, 2), projectileRotation);
+		GameObject projectile = Instantiate(projectileObject, Vector3.MoveTowards(projectileOrigin, target, 0.5f), projectileRotation) as GameObject;            
+		ProjectileMover debug = projectile.GetComponent<ProjectileMover>();
+		debug.Fire(targetDir);
 
-		//Return recoil vector
-		return (transform.position - target).normalized;
-
+		return -targetDir;
+		//Add some recoil of a fixed magnitude
+		//_rb2D.AddForce(-targetDir * recoilStrength, ForceMode2D.Impulse);
 	}
 }
 

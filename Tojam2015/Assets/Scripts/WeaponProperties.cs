@@ -3,6 +3,6 @@ using System.Collections;
 
 public interface WeaponProperties {
 	float Firerate{get;}
-	Vector3 attack(GameObject reticle);
+	Vector2 attack(GameObject reticle);
 }
 
