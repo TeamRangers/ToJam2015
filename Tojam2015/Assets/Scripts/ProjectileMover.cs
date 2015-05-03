@@ -2,9 +2,10 @@
 using System.Collections;
 
 public class ProjectileMover : MonoBehaviour {
-	public float speed;
+	
 	public int damage = 20;
-    
+    public float projectileForce;
+
     ForceField _forceField;
     ConstantForce2D _cf2D;
     Rigidbody2D _rb2D;
@@ -16,10 +17,14 @@ public class ProjectileMover : MonoBehaviour {
     }
 
 	// Use this for initialization
-	void Start () {
-        _rb2D.velocity = transform.forward * speed;
+	void Start () {        
         _forceField = GameObject.FindGameObjectWithTag("ForceField").GetComponent<ForceField>();
 	}
+
+    public void Fire(Vector2 direction)
+    {
+        _rb2D.AddForce(direction.normalized * projectileForce, ForceMode2D.Impulse);
+    }
 
 	void OnCollisionEnter2D(Collision2D coll) {
 
