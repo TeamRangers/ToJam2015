@@ -398,6 +398,7 @@ MonoBehaviour:
   gameOverPanel: {fileID: 21334798}
   playerOneWinsText: {fileID: 411396365}
   playerTwoWinsText: {fileID: 316584138}
+  mainMenuButton: {fileID: 1151932395}
 --- !u!4 &220774424
 Transform:
   m_ObjectHideFlags: 0

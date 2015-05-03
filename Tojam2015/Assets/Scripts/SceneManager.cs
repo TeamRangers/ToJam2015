@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
+
 
 public class SceneManager : MonoBehaviour {
 
@@ -18,16 +20,13 @@ public class SceneManager : MonoBehaviour {
     public GameObject forceField;
     public GameObject gameOverPanel;
     public GameObject playerOneWinsText;
-    public GameObject playerTwoWinsText;  
-
-    public void Reset()
-    {
-        gameOverPanel.SetActive(false);
-    }
+    public GameObject playerTwoWinsText;
+    public GameObject mainMenuButton;
 
     public void GameOver(int winner)
     {
         gameOverPanel.SetActive(true);
+        Cursor.visible = true;
 
         if (winner == 1)
         {
@@ -45,6 +44,7 @@ public class SceneManager : MonoBehaviour {
 	void Start () {
 
         gameOverPanel.SetActive(false);
+        mainMenuButton.GetComponent<Button>().onClick.AddListener(ArenaManager.Instance.LoadMainMenu);
         forceField.GetComponent<ForceField>().Generate();
 
         // If 2 player turn off AI
