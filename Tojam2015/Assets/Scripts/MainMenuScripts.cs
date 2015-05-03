@@ -6,6 +6,6 @@ public class MainMenuScripts : MonoBehaviour {
 
 	public void StartGame()
 	{
-		Application.LoadLevel("Scene1");
+		Application.LoadLevel("MainArena");
 	}
 }
