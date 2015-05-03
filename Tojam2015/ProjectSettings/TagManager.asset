@@ -13,6 +13,9 @@ TagManager:
   - Player4
   - SoundManager
   - ArenaManager
+  - OnePlayerButton
+  - TwoPlayerButton
+  - MuteButton
   layers:
   - Default
   - TransparentFX
