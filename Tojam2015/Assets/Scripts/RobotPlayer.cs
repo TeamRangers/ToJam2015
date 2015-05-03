@@ -11,12 +11,14 @@ public class RobotPlayer : MonoBehaviour {
 	
 	public string fire;
 	public GameObject reticle;
-	public GameObject projectileObject;
+	//public GameObject projectileObject;
+	public GameObject weaponObject;
 
 	public float recoilStrength;
 	public float attackDelay;
-	private float nextAttackTime;
+	//private float nextAttackTime;
 
+	private float attackTimer;
 	public bool activeAI;
 
 	private IList<GameObject> enemies;
@@ -26,6 +28,7 @@ public class RobotPlayer : MonoBehaviour {
 	private GameObject targetEnemy;
 	private float maxWalkTime = 0.75f;
 
+	WeaponProperties weaponProperties;
     Animator _animator;
     ForceField _forceField;
 
@@ -55,6 +58,7 @@ public class RobotPlayer : MonoBehaviour {
 
     void Start()
     {
+		weaponProperties = (WeaponProperties)weaponObject.GetComponent(typeof(WeaponProperties));
         _forceField = GameObject.FindGameObjectWithTag("ForceField").GetComponent<ForceField>();
 
 		if (activeAI){ //Construct a list of enemies (everyone tagged Player except oneself)
@@ -71,6 +75,8 @@ public class RobotPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		attackTimer += Time.deltaTime;
 
         if (_state == PlayerState.Floating)
         {
@@ -161,7 +167,7 @@ public class RobotPlayer : MonoBehaviour {
 		if (activeAI){AiTick(); return;}
 		//Handle firing here
 		if (Input.GetButtonDown (fire)){
-			FireProjectile();
+			AttackUsingWeapon();
 		}
 
 	}
@@ -176,21 +182,16 @@ public class RobotPlayer : MonoBehaviour {
     }
 
 
-	void FireProjectile(){
-		if (Time.time > nextAttackTime){ //Check if we are allowed to perform an attack
-			Vector3 target = reticle.transform.position; //Get reticle position
-			target.z = 1;
-			
-			//Determine the rotation for the projectile we are about to spawn by using the vector from us to the reticle
-			Quaternion projectileRotation = Quaternion.LookRotation(target - transform.position);
+	void AttackUsingWeapon(){
+		if (attackTimer >= weaponProperties.Firerate){ //Check if we are allowed to perform an attack
+			attackTimer = 0f;
 
-			//Create a new projectile, 1 unit away from us, facing the direction of the reticle
-			Instantiate(projectileObject, Vector3.MoveTowards(transform.position, target, 2), projectileRotation);
-			
+			Vector3 recoilVector = weaponProperties.attack (reticle);
+
 			//Add some recoil of a fixed magnitude
-			_rb2D.AddForce((transform.position - target).normalized * recoilStrength, ForceMode2D.Impulse);
+			_rb2D.AddForce(recoilVector * recoilStrength, ForceMode2D.Impulse);
 			
-			nextAttackTime = Time.time + attackDelay; //Set the next attack time to be current time + delay
+			//nextAttackTime = Time.time + attackDelay; //Set the next attack time to be current time + delay
 		}
 	}
 
@@ -199,7 +200,7 @@ public class RobotPlayer : MonoBehaviour {
 			if (Random.Range(0, 100) > 100/enemies.Count){continue;}
 			if (enemy.activeSelf){
 				reticle.transform.position = enemy.transform.position;
-				FireProjectile();
+				AttackUsingWeapon();
 				return;
 			}
 		}
