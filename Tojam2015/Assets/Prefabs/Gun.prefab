@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firerate: .300000012
-  projectileObject: {fileID: 193266, guid: 2a55d83988db7a442b594be86aa39434, type: 2}
+  projectileObject: {fileID: 123412, guid: ccaf66b27d2388848ac8aed99e66b20d, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
