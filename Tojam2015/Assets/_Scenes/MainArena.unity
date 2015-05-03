@@ -278,7 +278,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1001 &237184698
 Prefab:
   m_ObjectHideFlags: 0
@@ -1758,7 +1758,7 @@ Transform:
   - {fileID: 418589398}
   - {fileID: 799265586}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1001 &1418425027
 Prefab:
   m_ObjectHideFlags: 0
