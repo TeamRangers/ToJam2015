@@ -50,4 +50,9 @@ public class ArenaManager : MonoBehaviour {
         _numberOfPlayers = 2;
         Application.LoadLevel("MainArena");
     }
+
+    public void LoadMainMenu()
+    {
+        Application.LoadLevel("MainMenu");
+    }
 }

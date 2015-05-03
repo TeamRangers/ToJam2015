@@ -32,7 +32,7 @@ public class PlayerHealth : MonoBehaviour {
 
 	void Death() {
 		_isDead = true;
-        _player.Die();		
+        _player.Die();
 	}
 
 }
