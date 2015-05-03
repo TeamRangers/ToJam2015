@@ -3,6 +3,7 @@ using System.Collections;
 
 public class DefaultGunProperties : MonoBehaviour, WeaponProperties
 {
+	public float recoilStrength = 3;
 	public float firerate = 0.3f;
 	public GameObject projectileObject;
 	public float Firerate {
@@ -17,6 +18,12 @@ public class DefaultGunProperties : MonoBehaviour, WeaponProperties
 		}
 		set {
 			owner = value;
+		}
+	}
+
+	public float RecoilStrength {
+		get {
+			return recoilStrength;
 		}
 	}
 

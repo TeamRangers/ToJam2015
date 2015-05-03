@@ -13,15 +13,13 @@ public class RobotPlayer : MonoBehaviour {
 	public GameObject reticle;
 	//public GameObject projectileObject;
 	public GameObject weaponObject;
-
-	public float recoilStrength;
-	public float attackDelay;
+	
 	//private float nextAttackTime;
 
 	private float attackTimer;
 	public bool activeAI;
 
-	private IList<GameObject> enemies;
+	private List<GameObject> enemies;
     public PlayerState playerState;
 
 	private bool isWalking; //This is a bool for AI to see whether he is walking;
@@ -78,11 +76,12 @@ public class RobotPlayer : MonoBehaviour {
 		_audioSrc = GetComponent<AudioSource>();
 
 		if (activeAI){ //Construct a list of enemies (everyone tagged Player except oneself)
-			enemies = new List<GameObject>();
-			for (int i = 1; i < 5; i++){
-				GameObject enemy = GameObject.FindGameObjectWithTag("Player");
-				if (enemy != null && enemy != gameObject) {enemies.Add(enemy);}
-			}
+			enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
+			enemies.Remove(gameObject);
+		//	for (int i = 1; i < 5; i++){
+			//	GameObject enemies = GameObject.FindGameObjectsWithTag("Player");
+			//	if (enemy != null && enemy != gameObject) {enemies.Add(enemy);}
+			//}
 
 			//Disable reticle renderer since AI doesn't need it
 			reticle.GetComponent<SpriteRenderer>().enabled = false;
@@ -217,7 +216,7 @@ public class RobotPlayer : MonoBehaviour {
 			Vector3 recoilVector = weaponProperties.attack (reticle);
 
 			//Add some recoil of a fixed magnitude
-			_rb2D.AddForce(recoilVector * recoilStrength, ForceMode2D.Impulse);
+			_rb2D.AddForce(recoilVector * weaponProperties.RecoilStrength, ForceMode2D.Impulse);
 	// void FireProjectile ()
     // {
 		// if (Time.time > nextAttackTime){ //Check if we are allowed to perform an attack
