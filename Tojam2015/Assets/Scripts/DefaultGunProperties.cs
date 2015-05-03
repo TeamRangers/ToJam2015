@@ -29,7 +29,7 @@ public class DefaultGunProperties : MonoBehaviour, WeaponProperties
 
 	Vector2 shoot(GameObject reticle) {
 		Vector2 target = reticle.transform.position; //Get reticle position
-		Vector2 projectileOrigin = (Vector2)transform.position +(Vector2)transform.up.normalized * 0.6f;
+		Vector2 projectileOrigin = (Vector2)transform.position;
 		
 		Vector2 targetDir = (target - projectileOrigin).normalized;
 		
@@ -37,7 +37,7 @@ public class DefaultGunProperties : MonoBehaviour, WeaponProperties
 		Quaternion projectileRotation = Quaternion.FromToRotation(Vector3.up, targetDir);
 		
 		//Create a new projectile, 1 unit away from us, facing the direction of the reticle
-		GameObject projectile = Instantiate(projectileObject, Vector3.MoveTowards(projectileOrigin, target, 0.5f), projectileRotation) as GameObject;            
+		GameObject projectile = Instantiate(projectileObject, Vector3.MoveTowards(projectileOrigin, target, 0.7f), projectileRotation) as GameObject;            
 		ProjectileMover debug = projectile.GetComponent<ProjectileMover>();
 		debug.Fire(targetDir);
 
